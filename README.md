@@ -11,5 +11,4 @@ The script reports each sequence’s length, GC%, and AT%, followed by the mean 
 
 Siyu Ye | BIOM5350
 
-biom5350-seq-tools
-Edited on GitHub to test git pull.
+
