@@ -37,10 +37,18 @@ def main():
     if len(sys.argv) != 2:
         print(__doc__)
         sys.exit(1)
+    gc_values = []
     for name, seq in read_fasta(sys.argv[1]):
         gc_pct = 100 * gc_content(seq)
         at_pct = 100 - gc_pct if any(base in "ACGT" for base in seq) else 0.0
+        gc_values.append(gc_pct)
         print(f"{name}\tGC = {gc_pct:.1f}%\tLength = {len(seq)} bp\tAT = {at_pct:.1f}%")
+
+    if gc_values:
+        mean_gc = sum(gc_values) / len(gc_values)
+        print(f"Mean GC = {mean_gc:.1f}%")
+    else:
+        print("Mean GC = N/A (no sequences)")
 
 
 if __name__ == "__main__":
