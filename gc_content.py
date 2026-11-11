@@ -39,7 +39,8 @@ def main():
         sys.exit(1)
     for name, seq in read_fasta(sys.argv[1]):
         gc_pct = 100 * gc_content(seq)
-        print(f"{name}\tGC = {gc_pct:.1f}%\tLength = {len(seq)} bp\tAT = {at_pct: .1f}%")
+        at_pct = 100 - gc_pct if any(base in "ACGT" for base in seq) else 0.0
+        print(f"{name}\tGC = {gc_pct:.1f}%\tLength = {len(seq)} bp\tAT = {at_pct:.1f}%")
 
 
 if __name__ == "__main__":
